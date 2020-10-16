@@ -21,7 +21,7 @@ tk.resizable(0, 0)
 canvas.pack()
 
 
-def set_map(size):
+def draw_map(size):
     for row in range(size[0]):
         for col in range(size[1]):
             canvas.create_rectangle(col * block+margin, row * block+margin, col * block+margin+4,
@@ -32,7 +32,7 @@ def create_point(position, size, color):
     canvas.create_rectangle(position[0], position[1], position[0]+size, position[1]+size, fill=color)
 
 
-set_map(size)
+draw_map(size)
 start = [1, 0]
 goal = [17, 16]
 
@@ -82,8 +82,8 @@ for step in as_path.process:
     canvas.itemconfigure(timer, text=str(round(t, 2)))
 
     create_point(scale_step[0], 10, 'green')
-    current_point = canvas.create_rectangle(scale_step[0][0], scale_step[0][1], scale_step[0][0]+10, scale_step[0][1]+10,
-                                            fill='cyan')
+    current_point = canvas.create_rectangle(scale_step[0][0], scale_step[0][1], scale_step[0][0]+10,
+                                            scale_step[0][1]+10, fill='cyan')
 
     for i in range(1, len(step)):
         create_point(scale_step[i], 10, 'yellow')

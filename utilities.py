@@ -6,6 +6,9 @@ file_configuration_yaml = 'configuration.yaml'
 
 
 def set_configuration():
+    """
+    :return: dictionary of information in file yaml
+    """
     with open(file_configuration_yaml, 'r') as f_yaml:
         config_dict = yaml.safe_load(f_yaml)
 
@@ -13,15 +16,19 @@ def set_configuration():
 
 
 def get_topographic(fileName):
-    land = []
+    """
+    :param fileName: csv
+    :return: list of rock in topographic
+    """
+    topographic = []
     fileCSV = open(fileName, 'r')
     reader = csv.reader(fileCSV)
 
     for row in reader:
         tmp = (int(row[0]), int(row[1]))
-        land.append(tmp)
+        topographic.append(tmp)
 
-    return land
+    return topographic
 
 
 def scale_coordinate(list_coordinate, ratio, bias):
