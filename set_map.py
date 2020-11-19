@@ -4,13 +4,13 @@ import csv
 from utilities import set_configuration
 
 
-config_dict = set_configuration()
+config_dict = set_configuration('configuration.yaml')
 
 width = config_dict['width']
 height = config_dict['height']
 block = config_dict['block']
 margin = config_dict['margin']
-size = (20, 20)
+size = (35, 35)
 
 tk = Tk()
 tk.title('set map')
@@ -28,7 +28,10 @@ def create_point(position, color):
 def set_map(size_map):
     for i in range(size_map[0]):
         for j in range(size_map[1]):
-            canvas.create_rectangle(j * block+margin, i * block+margin, j * block+margin+25, i * block+margin+25,
+            if i == 0 or i == size[0] - 1 or j == 0 or j == size[1] - 1:
+                canvas.create_rectangle(j * block + margin, i * block + margin, j * block + margin + block,
+                                        i * block + margin + block, fill='black')
+            canvas.create_rectangle(j * block+margin, i * block+margin, j * block+margin+15, i * block+margin+15,
                                     fill='black')
 
 
